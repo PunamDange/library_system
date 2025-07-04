@@ -1,0 +1,44 @@
+{% extends "LibraryApp/book_list.html" %}
+
+{% block title %}
+    <title>Show Books</title>
+{% endblock %}
+
+{% block content %}
+    <h2>Show Books</h2>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>AUTHOR</th>
+            <th>PUBLISHED_DATE</th>
+            <th>PRICE</th>
+            <th>PAGES</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+            <th>AUTHOR</th>
+        </tr>
+        {% for lib in qs_of_books %}
+        <tr>
+            <td>{{ lib.id }}</td>
+            <td>{{ lib.title }}</td>
+            <td>{{ lib.author }}</td>
+            <td>{{ lib.published_date }}</td>
+            <td>{{ lib.price }}</td>
+            <td>{{ lib.pages }}</td>
+            <td><a href="/library/update/{{ lib.id }}/">UPDATE</a></td>
+            <td><a href="/library/delete/{{ lib.id }}/">DELETE</a></td>
+            <td><a href="{% url 'books-by-author' author_name=lib.author %}">{{ lib.author }}</a></td>
+
+
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No books found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+        <a href="/library/add/"><button>ADD Book</button></a>
+
+{% endblock %}

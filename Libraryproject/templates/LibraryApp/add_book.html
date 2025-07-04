@@ -1,0 +1,18 @@
+{% extends "LibraryApp/book_list.html" %}
+
+{% block title %}
+    <title>Add Books</title>
+{% endblock %}
+
+{% block content %}
+    <h2>Add Books</h2>
+    <form method="Post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit">
+
+    </form>
+
+    <br>
+        <a href="/library/show/"><button>show Books</button></a>
+{% endblock %}

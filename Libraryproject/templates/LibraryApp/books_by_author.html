@@ -1,0 +1,33 @@
+{% extends "LibraryApp/book_list.html" %}
+
+{% block title %}
+    <title>Books by {{ author }}</title>
+{% endblock %}
+
+{% block content %}
+    <h2>Books by {{ author }}</h2>
+    {% if books %}
+    <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>PUBLISHED DATE</th>
+            <th>PRICE</th>
+            <th>PAGES</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.published_date }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.pages }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No books found for {{ author }}.</p>
+    {% endif %}
+    <br>
+    <a href="/library/show/"><button>Back to All Books</button></a>
+{% endblock %}
